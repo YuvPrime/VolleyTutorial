@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements AbsListView.OnScr
     ListView listView;
     ArrayList<String> stringArrayList;
     ArrayAdapter<String> adapter;
+    CustomAdapter customAdapter;
     boolean userScrolled = false;
 
     @Override
@@ -79,8 +80,10 @@ public class MainActivity extends AppCompatActivity implements AbsListView.OnScr
                         }
 
                         Log.d("track", "done");
-                        adapter = new ArrayAdapter<String>(MainActivity.this,android.R.layout.simple_list_item_1, stringArrayList);
-                        listView.setAdapter(adapter);
+                       // adapter = new ArrayAdapter<String>(MainActivity.this,android.R.layout.simple_list_item_1, stringArrayList);
+                        //listView.setAdapter(adapter);
+                        customAdapter = new CustomAdapter(MainActivity.this,stringArrayList);
+                        listView.setAdapter(customAdapter);
                         listView.setOnScrollListener(MainActivity.this);
 
 
@@ -192,7 +195,7 @@ public class MainActivity extends AppCompatActivity implements AbsListView.OnScr
 
 
                         Log.d("track", "done two");
-                        adapter.notifyDataSetChanged();
+                        customAdapter.notifyDataSetChanged();
 
                         pDialog.hide();
                     }
